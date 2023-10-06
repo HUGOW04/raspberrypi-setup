@@ -1,17 +1,22 @@
- cmake_minimum_required(VERSION 3.14)
-set(PICO_BOARD pico_w)
-include(pico_sdk_import.cmake)
+cmake_minimum_required(VERSION 3.12)
 
-project(pico)
+include(pico_sdk_import.cmake)
+project(your_project_name C CXX ASM)
 
 pico_sdk_init()
 
-add_executable(pico
-    main.c
+# Add your source files here
+add_executable(your_project_name
+    your_project_name.c
 )
 
+target_link_libraries(your_project_name
+    pico_stdlib
+)
 
-# Add pico_stdlib library, add more if used
-target_link_libraries(pico pico_stdlib pico_cyw43_arch_none)
+# Enable USB output, disable UART output by default
+pico_enable_stdio_usb(your_project_name 1)
+pico_enable_stdio_uart(your_project_name 0)
 
-pico_add_extra_outputs(pico)
+# Enable extra outputs (optional)
+pico_add_extra_outputs(your_project_name)
